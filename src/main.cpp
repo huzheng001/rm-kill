@@ -49,7 +49,8 @@ static void rm_dir(char *dirname)
 	const gchar *filename;
 	while ((filename= g_dir_read_name(dir))!=NULL) {
 		std::string fullfilename;
-		fullfilename = dirname + G_DIR_SEPARATOR;
+		fullfilename = dirname;
+		fullfilename += G_DIR_SEPARATOR;
 		fullfilename += filename;
 		if (g_file_test(fullfilename.c_str(), G_FILE_TEST_IS_DIR)) {
 			rm_dir(fullfilename.c_str();
@@ -103,7 +104,6 @@ int main(int argc,char **argv)
 		if (real_rm) {
 			rm_file_or_dir(argc-1, argv++);
 		}
+		return 0;
 	}
-
-	return 0;
 }
